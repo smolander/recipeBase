@@ -23,15 +23,15 @@
 
         <div class="header-container">
             <header class="wrapper clearfix">
-                <a href="{{url_for('index')}}"><h1 class="title">Recipe base</h1></a>
+                <a href="{{url_for('main.index')}}"><h1 class="title">Recipe base</h1></a>
                 <nav>
                     <ul>
                         <li><a href="#">nav ul li a</a></li>
                         {% if current_user.is_authenticated %}
-                            <li><a href="{{ url_for('logout') }}">Sign out</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}">Sign out</a></li>
                         {% else %}
-                            <li><a href="{{ url_for('signup') }}">Sign up</a></li>
-                            <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                            <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
+                            <li><a href="{{ url_for('auth.login') }}">Sign in</a></li>
                         {% endif %}
                     </ul>
                 </nav>

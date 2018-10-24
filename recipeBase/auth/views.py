@@ -1,27 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request
-from recipeBase import app, db, login_manager
-from flask_login import login_required, login_user, logout_user, current_user
+from flask_login import login_user, logout_user
 
-from forms import LoginForm, SignupForm
-from models import User
-
-@login_manager.user_loader
-def load_user(userid):
-  return User.query.get(int(userid))
+from . import auth
+from .. import db
+from ..models import User
+from .forms import LoginForm, SignupForm
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-  return render_template('index.html')
-
-
-@app.route('/logged_in')
-@login_required
-def logged_in():
-  return "Logged in!"
-
-@app.route('/login', methods=["GET", "POST"])
+@auth.route('/login', methods=["GET", "POST"])
 def login():
   form = LoginForm()
   if form.validate_on_submit():
@@ -29,17 +15,17 @@ def login():
     if user is not None and user.check_password(form.password.data):
       login_user(user, form.remember_me.data)
       flash("Logged in as {}!".format(user.email))
-      return redirect(request.args.get('next') or url_for('index'))
+      return redirect(request.args.get('next') or url_for('main.index'))
     else:
       flash("Incorrect login!")
   return render_template("login.html", form=form)
 
-@app.route('/logout')
+@auth.route('/logout')
 def logout():
   logout_user()
-  return redirect(url_for("index"))
+  return redirect(url_for("main.index"))
 
-@app.route('/signup', methods=["GET", "POST"])
+@auth.route('/signup', methods=["GET", "POST"])
 def signup():
   form = SignupForm()
   print("this")
@@ -52,5 +38,5 @@ def signup():
     db.session.commit() 
     flash('Signed up as {}'.format(user.email))
     login_user(user)
-    return redirect(url_for('index')) 
+    return redirect(url_for('main.index')) 
   return render_template("signup.html", form=form)

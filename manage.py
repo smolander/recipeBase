@@ -1,9 +1,12 @@
 #! /usr/bin/env python
+import os
 
-from recipeBase import app, db
+from recipeBase import create_app, db
+
 from recipeBase.models import User
 from flask_script import Manager, prompt_bool
 
+app = create_app(os.getenv('RB_ENV') or 'dev')
 manager = Manager(app)
 
 @manager.command

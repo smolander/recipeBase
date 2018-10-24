@@ -5,6 +5,10 @@ from flask_login import UserMixin
 
 from recipeBase import db
 
+class Recipe(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  instructions = db.Column(db.String)
+
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   email = db.Column(db.String(120), unique=True, nullable=False)

@@ -1,3 +1,9 @@
 {
-  "python.pythonPath": "/home/smolander/envs/recipeBase/bin/python"
+  "python.pythonPath": "/home/smolander/envs/recipeBase/bin/python",
+  "python.unitTest.nosetestArgs": [
+    "recipeBase"
+  ],
+  "python.unitTest.pyTestEnabled": false,
+  "python.unitTest.unittestEnabled": false,
+  "python.unitTest.nosetestsEnabled": true
 }
