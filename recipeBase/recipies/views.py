@@ -12,5 +12,5 @@ from ..models import Recipe
 @login_required
 def list():
   recipe_list = Recipe.query.order_by(Recipe.name).all()
-  return render_template('list.html', item_list=recipe_list).encode('utf8')
+  return render_template('list.html', item_list=recipe_list)
 

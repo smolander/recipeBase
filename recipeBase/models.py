@@ -24,11 +24,14 @@ class Recipe(db.Model):
   initial_portions = db.Column(db.Integer)
   ingredients = db.relationship('IngredientsRecipeAssociation', back_populates="recipe")
 
-  def addIngredient(self, name, quantity):
-    
-    if not ingredient = Ingredient.query.filter_by(name=name).first():
-      return None
-    amount = IngredientsRecipeAssociation(quantity=quantity, ingredient=ingredient, recipe=self)
+  def __repr__(self):
+    return str(self.name)
+
+ # def addIngredient(self, name, quantity):
+ #   
+ #   if not ingredient = Ingredient.query.filter_by(name=name).first():
+ #     return None
+#    amount = IngredientsRecipeAssociation(quantity=quantity, ingredient=ingredient, recipe=self)
 
 
 
@@ -39,12 +42,8 @@ class Ingredient(db.Model):
   unit = db.Column(db.String)
   recipies = db.relationship('IngredientsRecipeAssociation', back_populates="ingredient")
 
-  def __unicode__(self):
-    return '{} ({})'.format(self.name, self.unit)
-
   def __repr__(self):
-    return self.__unicode__().encode('utf-8')
-    
+    return str('{} ({})'.format(self.name, self.unit))   
 
 
 class User(db.Model, UserMixin):

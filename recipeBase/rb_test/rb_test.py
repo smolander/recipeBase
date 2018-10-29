@@ -42,13 +42,17 @@ class RbTestCase(test_helpers):
     self.make_ingredients()
 
     response = self.client.get(url_for('ingredients.list'))
-    self.assertIn("Ägg", response.data)
+    #checkname = ("Ägg".encode('unicode-escape').decode('utf-8').encode('ascii'))
+    checkname = "Ägg"
+    print(checkname)
+    self.assertIn(checkname, response.data.decode('utf-8'))
 
   def test_listing_ingredients_without_list(self):
     self.make_and_login()
 
     response = self.client.get(url_for('ingredients.list'))
-    self.assertIn("Ingredienslistan är tyvärr tom för tillfället", response.data)
+    print(response.content_encoding)
+    self.assertIn("Ingredienslistan är tyvärr tom för tillfället", response.data.decode('utf-8'))
 
   def test_listing_recipies_response(self):
     self.make_and_login()
@@ -67,4 +71,7 @@ class RbTestCase(test_helpers):
 
     response = self.client.get(url_for('recipies.list'))
     print(response.data)
-    self.assertIn("Pannkaka", response.data)
+    self.assertIn("Pannkaka", response.data.decode('utf-8'))
+
+#  def test_adding_function_in_recipe_model
+#    recipe = 

@@ -12,5 +12,5 @@ from ..models import Ingredient
 @login_required
 def list():
   ingredient_list = Ingredient.query.order_by(Ingredient.name).all()
-  return render_template('list.html', item_list=ingredient_list).encode('utf8')
+  return render_template('list.html', item_list=ingredient_list)
 
