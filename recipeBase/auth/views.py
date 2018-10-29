@@ -28,8 +28,6 @@ def logout():
 @auth.route('/signup', methods=["GET", "POST"])
 def signup():
   form = SignupForm()
-  print("this")
-  print(form.email.data)
   if form.validate_on_submit():
     
     user = User(email=form.email.data,

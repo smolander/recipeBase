@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
   SECRET_KEY = '\xcc\xb6\x97\xb6\xcc\xd6h\x05\x89\xd5\xb6\x89\x15\xba\xa4\x1e\x10\xd2\x00\xc4'
   DEBUG = False
+  SQLALCHEMY_TRACK_MODIFICATIONS = False
   
 
 class DevelopmentConfig(Config):

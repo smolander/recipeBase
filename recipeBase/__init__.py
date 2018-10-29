@@ -30,9 +30,14 @@ def create_app(config_name):
   from .auth import auth as auth_blueprint
   app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
-
   from .main import main as main_blueprint
   app.register_blueprint(main_blueprint, url_prefix='/')
+
+  from .ingredients import ingredients as ingredient_blueprint
+  app.register_blueprint(ingredient_blueprint, url_prefix='/ingredients')
+
+  from .recipies import recipies as recipies_blueprint
+  app.register_blueprint(recipies_blueprint, url_prefix='/recipies')
 
   return app
 

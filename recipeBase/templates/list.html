@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{%block title %}
+  Lista
+{%endblock%}
+
+{%block content%}
+
+  {% if not item_list %}
+    Ingredienslistan är tyvärr tom för tillfället
+  {% else %}
+  Lista:<br/>
+    {% for item in item_list %}
+      {{item}}<br/>
+    {% endfor %}
+  {% endif %}
+{%endblock%}

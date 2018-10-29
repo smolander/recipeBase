@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm as Form
 from wtforms.fields import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, url, Email, EqualTo, Length
 from werkzeug.routing import ValidationError
