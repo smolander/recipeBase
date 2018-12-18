@@ -67,14 +67,13 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>footer</h3>
+                <div id="like_button_container"></div>
             </footer>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-        <script src="../static/js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -85,5 +84,12 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+        <!-- Load our React component. -->
+        <script src="../static/js/main.js" type="text/babel"></script>
     </body>
 </html>

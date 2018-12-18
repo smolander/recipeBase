@@ -12,6 +12,9 @@ class IngredientsRecipeAssociation(db.Model):
   quantity = db.Column(db.Integer)
   recipe = db.relationship("Recipe", back_populates="ingredients")
   ingredient = db.relationship("Ingredient", back_populates="recipies")
+
+  def __repr__(self):
+    return str('{} ({} {})'.format(self.ingredient.name, self.quantity, self.ingredient.unit))
   
 
 class Recipe(db.Model):
@@ -27,11 +30,22 @@ class Recipe(db.Model):
   def __repr__(self):
     return str(self.name)
 
- # def addIngredient(self, name, quantity):
- #   
- #   if not ingredient = Ingredient.query.filter_by(name=name).first():
- #     return None
-#    amount = IngredientsRecipeAssociation(quantity=quantity, ingredient=ingredient, recipe=self)
+  def add_ingredient(self, name, quantity):
+    ingredient = Ingredient.query.filter_by(name=name).first()
+
+    if ingredient==None:
+      return None
+    amount = IngredientsRecipeAssociation(quantity=quantity, ingredient=ingredient, recipe=self)
+    return amount
+
+  def add_ingredients(self, ingredients_string):
+    association_list = []
+    ingredient_list = ingredients_string.split(',')
+    for ingredient_string in ingredient_list:
+      (ingredient_qty, ingredient_name) = ingredient_string.lstrip().split(' ')
+      association_list.append(self.add_ingredient(ingredient_name, ingredient_qty))
+    
+    return association_list
 
 
 

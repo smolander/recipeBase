@@ -17,10 +17,26 @@ manager.add_command('db', MigrateCommand)
 @manager.command
 def injectData():
   db.session.add(User(email = "simon.molander@valtech.se", password="asdf"))
-  names_units = {u"Mjöl":u"dl", u"Ägg":u"stycken", u"Mjölk":u"dl"}
-  for (name, unit) in names_units.items():
-    cur_ingredient = Ingredient(name=name, unit=unit)
+  
+  pancake = Recipe(name=u"Pannkaka",
+                    instructions = u"Rör ihop och stek",
+                    cooking_time= 45,
+                    difficulty = 3,
+                    initial_portions = 4
+                    )
+
+  ingredient_list = [{"name": "Mjöl", "unit": "dl", "quantity": 2},
+                    {"name": "Ägg", "unit": "stycken", "quantity": 3},
+                    {"name": "Mjölk", "unit": "dl", "quantity": 4}]
+
+  
+  for ingredient in ingredient_list:
+    cur_ingredient = Ingredient(name=ingredient["name"], unit=ingredient["unit"])
     db.session.add(cur_ingredient)
+    pancake.add_ingredient(name=ingredient["name"], quantity=ingredient["quantity"])
+
+  db.session.add(pancake)
+  
   db.session.commit()
   print('Database initialized')
 
