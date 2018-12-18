@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{%block title %}
+  Recept
+{%endblock%}
+
+{%block content%}
+  {% if recipe %}
+    <h2>{{recipe.name}}</h2>
+    Tid: {{recipe.cooking_time}}<br/>
+    Svårighetsgrad: {{recipe.difficulty}}<br/>
+    Portioner: {{recipe.initial_portions}}
+    <hr>
+    {%for ingredient in recipe.ingredients%}
+      {{ingredient.quantity}} {{ingredient.ingredient.unit}} {{ingredient.ingredient.name}}<br/>
+    {%endfor%}
+    <hr>
+    {{recipe.instructions}}
+  {% else %}
+    Felaktigt recept-id
+  {% endif %}
+
+  
+{%endblock%}

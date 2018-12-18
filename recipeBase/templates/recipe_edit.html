@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Recepteditering
+{% endblock %}
+
+{%block content%}
+  <section>
+    <h1 style="clear:both">Recepteditering</h1>
+    <form action="" method="post">
+      {{form.hidden_tag()}}
+      <table>
+        {{ render_field(form.name, size=50) }} <br/>
+        {{ render_field(form.cooking_time)}} {{render_field(form.difficulty)}}<br/>
+        {{ render_field(form.initial_portions)}}
+        <div id="ingredient_boxes"></div>
+        {{ render_field(form.instructions, rows=10, cols=100)}}<br/>
+        {{ render_field(form.submit)}}
+      </table>
+    </form>
+  </section>
+{% endblock %}
+
+{% block sidebar %}
+{%endblock%}

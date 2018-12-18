@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Receptsök
+{% endblock %}
+
+{%block content%}
+  <section>
+    <h1 style="clear:both">Receptsökning</h1>
+    <form action="" method="post">
+      {{form.hidden_tag()}}
+      <table>
+        {{ render_field(form.name, size=50) }}
+        {{ render_field(form.submit)}}
+      </table>
+    </form>
+  </section>
+{% endblock %}
+
+{% block sidebar %}
+{%endblock%}
